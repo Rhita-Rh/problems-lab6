@@ -1,0 +1,1 @@
+ArrayList is generally faster for most operations except frequent insertions/deletions at the beginning, where LinkedList performs better. This difference arises from ArrayList’s contiguous array structure (fast access, costly shifts) and LinkedList’s node-based structure.

@@ -1,5 +1,6 @@
 package problem4;
 
+import java.lang.management.OperatingSystemMXBean;
 import java.util.*;
 
 public class ListPerformanceComparison {
@@ -17,8 +18,8 @@ public class ListPerformanceComparison {
 
         System.out.println("---- Populate both lists ----");
         for (int i = 0; i < SIZE; i++) {
-            //code here
-            //code here
+            arrayList.add(i);
+            linkedList.add(i);
         }
 
         // 2️⃣ Random insertions and deletions
@@ -40,7 +41,24 @@ public class ListPerformanceComparison {
         Random random = new Random();
         long start = System.nanoTime();
 
-        // insert your code here
+        for(int i=0; i<OPERATIONS; i++){
+            int value = random.nextInt(OPERATIONS);
+
+            if(list.isEmpty()){
+                list.add(0, value);
+            }
+            else{
+                int index = random.nextInt(SIZE);
+                list.add(index, value);
+            }
+        }
+
+        for(int i=0; i<OPERATIONS; i++){
+            if(!list.isEmpty()){
+                int index = random.nextInt(SIZE);
+                list.remove(index);
+            }
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Random insert/delete: %.3f ms%n",
@@ -54,11 +72,23 @@ public class ListPerformanceComparison {
 
         // Insertions at beginning and end
 
-        // add your code here
+        for(int i=0; i<OPERATIONS; i++){
+            list.add(0, i);
+        }
+
+        for(int i=0; i<OPERATIONS; i++){
+            list.add(i);
+        }
 
         // Deletions at beginning and end
 
-        // add your code here
+        for(int i=0; i<OPERATIONS && SIZE>0; i++){
+            list.remove(0);
+        }
+
+        for(int i=0; i<OPERATIONS && SIZE>0; i++){
+            list.remove(SIZE-1);
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Sequential insert/delete (start/end): %.3f ms%n",
@@ -69,11 +99,19 @@ public class ListPerformanceComparison {
 
     private static void testRandomAccess(List<Integer> list, String name) {
         Random random = new Random();
+        //ensure the list has elements
+        list.clear();
+        for(int i=0; i<SIZE; i++){
+            list.add(i);
+        }
         long start = System.nanoTime();
 
         long sum = 0;
         // sum of the all elements in the list
-       // insert your code here
+        for(int j=0; j<OPERATIONS; j++){
+            int index = random.nextInt(SIZE);
+            sum += list.get(index);
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Random access (get): %.3f ms%n",
