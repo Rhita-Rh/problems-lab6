@@ -68,6 +68,7 @@ public class GroceryList
             }
         }
         while(choice!=0);
+        scanner.close();
         
     }
 }

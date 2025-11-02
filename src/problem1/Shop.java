@@ -36,5 +36,6 @@ public class Shop
             keepShopping = scan.nextLine();
         }
         while (keepShopping.equalsIgnoreCase("y"));
+        scan.close();
     }
 }

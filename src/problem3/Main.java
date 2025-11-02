@@ -45,6 +45,7 @@ public class Main {
             }
 
         } while (choice != 0);
+        scanner.close();
 
     }
 
@@ -121,6 +122,7 @@ public class Main {
             default:
                 System.out.println("Invalid type.");
         }
+        scanner.close();
     }
 
     private static void deleteDocument(Library library){
@@ -130,6 +132,7 @@ public class Main {
         Document doc = library.document(record);
         if (doc == null) {
             System.out.println("Document not found.");
+            scanner.close();
             return;
         }
 
@@ -140,5 +143,6 @@ public class Main {
         } else {
             System.out.println("Document not found.");
         }
+        scanner.close();
     }
 }
